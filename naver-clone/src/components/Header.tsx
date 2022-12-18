@@ -42,7 +42,7 @@ const Input = styled.input `
     width: 534px;
     :focus {outline: none;}
 `
-const AutocompleteBtn = styled.button`
+const AutocompleteBtn = styled.span`
     position:absolute ;
     right: 60px;
     color: #03c75a;
@@ -65,11 +65,12 @@ const Button = styled.button `
 `
 const Autocomplete = styled.div`
     height: 283px;
-    width: 578px;
+    width: 580px;
     background:white;
     border: 1px solid #e4e8eb;
     position:relative;
     border-radius:0 0 10px 10px;
+    z-index:1;
 `
 const AutocompleteFooter = styled.div`
     height: 38px;
@@ -97,9 +98,9 @@ const AutocompleteFooter = styled.div`
 const AutocompleteText = styled.div`
     vertical-align:middle ;
     text-align:center ;
-    padding: 105px 0 106px;
+    padding: 105px 0 100px;
     color: #202020;
-    font-size: 12px;
+    font-size: 14px;
     p {
         margin-bottom: 5px;
     }
@@ -164,7 +165,7 @@ const Service = styled.div`
 `
 
 const Header = () => {
-    const {register, watch, handleSubmit} = useForm();
+    const {register, handleSubmit} = useForm();
     const [isClick, setIsClick] = useState(false);
     const onValid = (data:any) => {
         console.log(data)
@@ -180,7 +181,7 @@ const Header = () => {
                 <Search>
                     <SearchBar>
                         <form onSubmit={handleSubmit(onValid)}>
-                            <Input {...register("toDo", {required:true})} placeholder="검색어를 입력하세요" />
+                            <Input {...register("search", {required:true})} placeholder="검색어를 입력하세요" />
                             <AutocompleteBtn onClick={()=>{setIsClick(prev => !prev)}}> {isClick ? <RxTriangleUp/>:<RxTriangleDown/>}</AutocompleteBtn>
                             <Button><BiSearchAlt/></Button>
                         </form>
